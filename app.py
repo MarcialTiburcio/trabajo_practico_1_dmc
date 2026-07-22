@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Color de fondo del logo (ejemplo: azul oscuro)
-color_sidebar = "#0A3D62"   # reemplaza con el código HEX exacto del color del logo
+color_sidebar = "#032457"   # reemplaza con el código HEX exacto del color del logo
 
 # Inyectar CSS para cambiar el color del sidebar
 st.markdown(
