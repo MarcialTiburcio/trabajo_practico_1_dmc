@@ -5,6 +5,7 @@ import numpy as np
 # =========================
 # Configuración inicial
 # =========================
+st.sidebar.image("logodmc_2.png")
 st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layout="wide")
 
 # =========================
