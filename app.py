@@ -5,12 +5,23 @@ import numpy as np
 # Color de fondo del logo (ejemplo: azul oscuro)
 color_sidebar = "#032457"   # reemplaza con el código HEX exacto del color del logo
 
-# Inyectar CSS para cambiar el color del sidebar
+# Inyectar CSS para personalizar sidebar
 st.markdown(
     f"""
     <style>
+        /* Fondo del sidebar */
         [data-testid="stSidebar"] {{
             background-color: {color_sidebar};
+        }}
+
+        /* Texto dentro del sidebar */
+        [data-testid="stSidebar"] * {{
+            color: white !important;
+        }}
+
+        /* Botón de colapso << */
+        button[kind="header"] {{
+            color: white !important;
         }}
     </style>
     """,
