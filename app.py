@@ -5,7 +5,6 @@ import numpy as np
 # Color de fondo del logo (ejemplo: azul oscuro)
 color_sidebar = "#032457"   # reemplaza con el código HEX exacto del color del logo
 
-# Inyectar CSS para personalizar sidebar
 st.markdown(
     f"""
     <style>
@@ -14,9 +13,20 @@ st.markdown(
             background-color: {color_sidebar};
         }}
 
-        /* Texto dentro del sidebar */
+        /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
             color: white !important;
+        }}
+
+        /* Ajuste específico para los selectbox */
+        div[data-baseweb="select"] > div {{
+            background-color: white !important;   /* fondo blanco */
+            color: black !important;              /* texto negro */
+        }}
+
+        /* Texto de la opción seleccionada */
+        div[data-baseweb="select"] span {{
+            color: black !important;
         }}
 
         /* Botón de colapso << */
