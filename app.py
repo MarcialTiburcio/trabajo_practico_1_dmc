@@ -15,14 +15,23 @@ st.markdown(
 
         /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
-            color: {color_sidebar} !important;
+            color: white !important;
+        }}
+
+        /* Estilo específico para el título "Navegación" */
+        [data-testid="stSidebar"] h2 {{
+            color: #FFD700 !important;   /* amarillo dorado */
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
         }}
 
         /* Caja del selectbox */
         div[data-baseweb="select"] > div {{
-            background-color: white !important;   /* fondo azul */
-            color: black !important;                        /* texto blanco */
-            border: 1px solid white !important;             /* borde blanco */
+            background-color: {color_sidebar} !important;
+            color: white !important;
+            border: 1px solid white !important;
         }}
 
         /* Texto de la opción seleccionada */
@@ -44,7 +53,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 # =========================
 # Configuración inicial
 # =========================
@@ -55,7 +63,7 @@ st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layou
 # Menú lateral
 # =========================
 menu = st.sidebar.selectbox(
-    ".:. Menú .:.",
+    "Navegación",
     ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
 )
 
