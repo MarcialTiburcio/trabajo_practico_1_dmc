@@ -27,13 +27,19 @@ st.markdown(
             padding-bottom: 5px;
         }}
 
-        /* Caja del selectbox (cerrado) */
+        /* Caja del selectbox */
         div[data-baseweb="select"] > div {{
             background-color: {color_sidebar} !important;
             border: 1px solid white !important;
         }}
 
-        /* Texto de la opción seleccionada en la caja */
+        /* Texto dentro del input del selectbox */
+        div[data-baseweb="select"] input {{
+            color: {color_selected} !important;
+            font-weight: bold;
+        }}
+
+        /* Placeholder del selectbox */
         div[data-baseweb="select"] div[role="button"] span {{
             color: {color_selected} !important;
             font-weight: bold;
