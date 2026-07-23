@@ -102,24 +102,60 @@ elif menu == "Ejercicio 1":
 elif menu == "Ejercicio 2":
     st.markdown("### Ejercicio 2 – Registro con NumPy y DataFrame")
 
-    if "productos" not in st.session_state:
-        st.session_state.productos = []
+    # =========================
+# Inicialización
+# =========================
+if "Productos" not in st.session_state:
+    st.session_state.Productos = np.array([])
+    st.session_state.Categorias = np.array([])
+    st.session_state.Precios = np.array([])
+    st.session_state.Cantidades = np.array([])
+    st.session_state.Totales = np.array([])
 
-    nombre = st.text_input("Nombre del producto")
-    categoria = st.selectbox("Categoría", ["Tecnología", "Alimentos", "Ropa", "Otros"])
-    precio = st.number_input("Precio", min_value=0.0, step=1.0)
-    cantidad = st.number_input("Cantidad", min_value=1, step=1)
+st.title("Ejercicio 2 – Registro con NumPy, Arrays y DataFrame")
 
-    if st.button("Agregar producto"):
+st.markdown("""
+Este módulo permite registrar productos con su categoría, precio y cantidad,
+almacenarlos en arrays de NumPy y mostrar un DataFrame actualizado.
+""")
+
+# =========================
+# Formulario de ingreso
+# =========================
+producto = st.text_input("Nombre del producto")
+categoria = st.selectbox("Categoría", ["Alimentos", "Bebidas", "Electrónicos", "Otros"])
+precio = st.number_input("Precio", min_value=0.0, step=0.1)
+cantidad = st.number_input("Cantidad", min_value=0, step=1)
+
+# =========================
+# Botón para agregar registro
+# =========================
+if st.button("Agregar producto"):
+    if producto.strip() == "" or precio == 0 or cantidad == 0:
+        st.error("Debe ingresar un producto, precio mayor a 0 y cantidad mayor a 0.")
+    else:
         total = precio * cantidad
-        st.session_state.productos.append([nombre, categoria, precio, cantidad, total])
-        st.success("Producto agregado correctamente")
+        st.session_state.Productos = np.append(st.session_state.Productos, producto)
+        st.session_state.Categorias = np.append(st.session_state.Categorias, categoria)
+        st.session_state.Precios = np.append(st.session_state.Precios, precio)
+        st.session_state.Cantidades = np.append(st.session_state.Cantidades, cantidad)
+        st.session_state.Totales = np.append(st.session_state.Totales, total)
+        st.success("Producto agregado correctamente.")
 
-    if st.session_state.productos:
-        arr = np.array(st.session_state.productos)
-        df = pd.DataFrame(arr, columns=["Producto", "Categoría", "Precio", "Cantidad", "Total"])
-        st.dataframe(df)
+# =========================
+# Mostrar DataFrame actualizado
+# =========================
+if st.session_state.Productos.size > 0:
+    df = pd.DataFrame({
+        "Producto": st.session_state.Productos,
+        "Categoría": st.session_state.Categorias,
+        "Precio": st.session_state.Precios,
+        "Cantidad": st.session_state.Cantidades,
+        "Total": st.session_state.Totales
+    })
 
+    st.markdown("### Registro Actualizado")
+    st.dataframe(df)
 # =========================
 # EJERCICIO 3 – Uso de funciones externas
 # =========================
