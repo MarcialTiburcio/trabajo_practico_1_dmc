@@ -15,7 +15,7 @@ st.markdown(
 
         /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
-            color: white !important;
+            color: red !important;
         }}
 
         /* Caja del selectbox */
@@ -44,8 +44,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.sidebar.title("Navegación")
-opcion = st.sidebar.selectbox("Selecciona sección", ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"])
+
 # =========================
 # Configuración inicial
 # =========================
