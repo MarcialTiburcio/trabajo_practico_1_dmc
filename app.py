@@ -5,48 +5,7 @@ import numpy as np
 color_sidebar = "#032457"   # azul del logo
 color_selected_bg = "#FFD700"  # dorado para el fondo del selectbox
 
-st.markdown(
-    f"""
-    <style>
-        /* Fondo del sidebar */
-        [data-testid="stSidebar"] {{
-            background-color: {color_sidebar};
-        }}
-
-        /* Texto general del sidebar */
-        [data-testid="stSidebar"] * {{
-            color: white !important;
-        }}
-
-        /* Caja del selectbox (cerrado) */
-        div[data-baseweb="select"] > div {{
-            background-color: {color_sidebar} !important;   /* fondo azul */
-            border: 1px solid white !important;
-        }}
-
-        /* Opciones desplegadas */
-        ul[role="listbox"] li {{
-            background-color: {color_sidebar} !important;   /* fondo azul */
-            color: white !important;
-        }}
-
-        /* Opción resaltada al pasar el mouse */
-        ul[role="listbox"] li:hover {{
-            background-color: #FFD700 !important;           /* dorado */
-            color: {color_sidebar} !important;
-            font-weight: bold;
-        }}
-
-        /* Botón de colapso << */
-        button[kind="header"] {{
-            color: white !important;
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.sidebar.image("logodmc_2.png")
+st.sidebar.image("logodmc_1.png")
 st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layout="wide")
 
 menu = st.sidebar.selectbox(
