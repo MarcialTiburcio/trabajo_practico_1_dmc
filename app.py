@@ -48,68 +48,54 @@ if menu == "Principal":
 # EJERCICIO 1 – Flujo de caja con listas
 # =========================
 elif menu == "Ejercicio 1":
-    st.markdown("### Ejercicio 1 – Flujo de Caja con Listas")
 
-   # =========================
-# Inicialización
-# =========================
-if "movimientos" not in st.session_state:
-    st.session_state.movimientos = []
-
-st.title("Ejercicio 1 – Flujo de Caja con Listas")
-
-st.markdown("""
-Este módulo permite registrar movimientos financieros (ingresos y gastos) 
-y calcular el flujo de caja final.
-""")
-
-# =========================
-# Widgets de entrada
-# =========================
-concepto = st.text_input("Ingrese el concepto")
-tipo_movimiento = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
-valor = st.number_input("Ingrese el valor", min_value=0.0, step=0.1)
-
-# =========================
-# Botón para agregar movimiento
-# =========================
-if st.button("Agregar movimiento"):
-    if concepto.strip() == "" or valor == 0:
-        st.error("Debe ingresar un concepto y un valor mayor a 0.")
-    else:
-        st.session_state.movimientos.append({
-            "Concepto": concepto,
-            "Movimiento": tipo_movimiento,
-            "Valor": valor
-        })
-        st.success("Movimiento agregado correctamente.")
-
-# =========================
-# Mostrar tabla de movimientos
-# =========================
-if st.session_state.movimientos:
-    df = pd.DataFrame(st.session_state.movimientos)
-    st.markdown("### Detalle de movimientos registrados")
-    st.dataframe(df)
-
-    # =========================
-    # Cálculos
-    # =========================
-    total_ingresos = df[df["Movimiento"] == "Ingreso"]["Valor"].sum()
-    total_gastos = df[df["Movimiento"] == "Gasto"]["Valor"].sum()
-    saldo = total_ingresos - total_gastos
-
-    # =========================
-    # Resultados
-    # =========================
-    st.metric("Total ingresos", f"{total_ingresos:.2f}")
-    st.metric("Total gastos", f"{total_gastos:.2f}")
-    st.metric("Saldo final", f"{saldo:.2f}")
-
-    if saldo > 0:
-        st.success("Flujo de caja: A FAVOR")
-    else:
-        st.error("Flujo de caja: EN CONTRA")
+    if "movimientos" not in st.session_state:
+        st.session_state.movimientos = []
+    
+    st.title("Ejercicio 1 – Flujo de Caja con Listas")
+    
+    st.markdown("""
+    Este módulo permite registrar movimientos financieros (ingresos y gastos) 
+    y calcular el flujo de caja final.
+    """)
+    
+    # Ingreso de datos
+    concepto = st.text_input("Ingrese el concepto")
+    tipo_movimiento = st.selectbox("Tipo de movimiento", ["Ingreso", "Gasto"])
+    valor = st.number_input("Ingrese el valor", min_value=0.0, step=0.1)
+    
+    # Botón para agregar movimiento
+    if st.button("Agregar movimiento"):
+        if concepto.strip() == "" or valor == 0:
+            st.error("Debe ingresar un concepto y un valor mayor a 0.")
+        else:
+            st.session_state.movimientos.append({
+                "Concepto": concepto,
+                "Movimiento": tipo_movimiento,
+                "Valor": valor
+            })
+            st.success("Movimiento agregado correctamente.")
+    
+    # Mostrar tabla de movimientos
+    if st.session_state.movimientos:
+        df = pd.DataFrame(st.session_state.movimientos)
+        st.markdown("### Detalle de movimientos registrados")
+        st.dataframe(df)
+    
+        total_ingresos = df[df["Movimiento"] == "Ingreso"]["Valor"].sum()
+        total_gastos = df[df["Movimiento"] == "Gasto"]["Valor"].sum()
+        saldo = total_ingresos - total_gastos
+    
+        # Mostramos los resultados
+        st.metric("Total ingresos", f"{total_ingresos:.2f}")
+        st.metric("Total gastos", f"{total_gastos:.2f}")
+        st.metric("Saldo final", f"{saldo:.2f}")
+    
+        if saldo >= 0:
+            st.success("Flujo de caja: A FAVOR")
+        else:
+            st.error("Flujo de caja: EN CONTRA")
+            
 # =========================
 # EJERCICIO 2 – Registro con NumPy y DataFrame
 # =========================
