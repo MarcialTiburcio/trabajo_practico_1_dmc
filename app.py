@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Color de fondo del logo (ejemplo: azul oscuro)
-color_sidebar = "#032457"
+color_sidebar = "#032457"   # azul del logo
 
 st.markdown(
     f"""
@@ -27,22 +26,30 @@ st.markdown(
             padding-bottom: 5px;
         }}
 
-        /* Caja del selectbox */
+        /* Caja del selectbox (cuando está cerrado) */
         div[data-baseweb="select"] > div {{
             background-color: {color_sidebar} !important;
-            color: white !important;
+            color: #FFD700 !important;   /* texto dorado para destacar */
             border: 1px solid white !important;
         }}
 
         /* Texto de la opción seleccionada */
         div[data-baseweb="select"] span {{
-            color: white !important;
+            color: #FFD700 !important;   /* dorado para diferenciar */
+            font-weight: bold;
         }}
 
         /* Opciones desplegadas */
         ul[role="listbox"] li {{
             background-color: {color_sidebar} !important;
             color: white !important;
+        }}
+
+        /* Opción resaltada al pasar el mouse */
+        ul[role="listbox"] li:hover {{
+            background-color: #FFD700 !important;
+            color: {color_sidebar} !important;
+            font-weight: bold;
         }}
 
         /* Botón de colapso << */
@@ -53,15 +60,10 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-# =========================
-# Configuración inicial
-# =========================
+
 st.sidebar.image("logodmc_2.png")
 st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layout="wide")
 
-# =========================
-# Menú lateral
-# =========================
 menu = st.sidebar.selectbox(
     "Navegación",
     ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
