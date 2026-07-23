@@ -5,7 +5,7 @@ import numpy as np
 color_sidebar = "#032457"   # azul del logo
 color_selected_bg = "#FFD700"  # dorado para el fondo del selectbox
 
-st.sidebar.image("logodmc_2.png")
+st.sidebar.image("logodmc_1.png")
 st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layout="wide")
 
 menu = st.sidebar.selectbox(
