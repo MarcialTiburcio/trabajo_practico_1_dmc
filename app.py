@@ -15,7 +15,7 @@ st.markdown(
 
         /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
-            color: red !important;
+            color: {color_sidebar} !important;
         }}
 
         /* Caja del selectbox */
