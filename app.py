@@ -30,12 +30,11 @@ st.markdown(
         /* Caja del selectbox (cerrado) */
         div[data-baseweb="select"] > div {{
             background-color: {color_sidebar} !important;
-            color: {color_selected} !important;
             border: 1px solid white !important;
         }}
 
-        /* Texto de la opción seleccionada dentro del selectbox */
-        div[data-baseweb="select"] span {{
+        /* Texto de la opción seleccionada en la caja */
+        div[data-baseweb="select"] div[role="button"] span {{
             color: {color_selected} !important;
             font-weight: bold;
         }}
@@ -51,11 +50,6 @@ st.markdown(
             background-color: {color_selected} !important;
             color: {color_sidebar} !important;
             font-weight: bold;
-        }}
-
-        /* Botón de colapso << */
-        button[kind="header"] {{
-            color: white !important;
         }}
     </style>
     """,
