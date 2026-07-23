@@ -2,14 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-color_sidebar_text = "#032457"   # azul del logo
+#Aplicando CSS - Hojas de estilo
+color_sidebar_text = "#032457"  #Color del fondo del logo
+
 st.markdown(
     f"""
     <style>
-        /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
             color: {color_sidebar_text} !important;
-            style: bold
+            font-weight: bold !important;
         }}
     </style>
     """,
