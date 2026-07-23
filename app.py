@@ -20,8 +20,8 @@ st.markdown(
 
         /* Caja del selectbox */
         div[data-baseweb="select"] > div {{
-            background-color: {color_sidebar} !important;   /* fondo azul */
-            color: white !important;                        /* texto blanco */
+            background-color: white !important;   /* fondo azul */
+            color: black !important;                        /* texto blanco */
             border: 1px solid white !important;             /* borde blanco */
         }}
 
