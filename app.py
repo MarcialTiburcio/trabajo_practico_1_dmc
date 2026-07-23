@@ -25,7 +25,7 @@ menu = st.sidebar.selectbox(
 )
 
 # Principal
-if menu == "Home":
+if menu == "Principal":
     st.title("Proyecto Aplicado en Streamlit – Fundamentos de Programación")
     st.subheader("Módulo 1 - Curso Python DMC")
     st.image("https://www.python.org/static/community_logos/python-logo.png", width=200)
