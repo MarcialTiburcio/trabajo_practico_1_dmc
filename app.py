@@ -67,14 +67,16 @@ elif menu == "Ejercicio 1":
     # Botón para agregar movimiento
     if st.button("Agregar movimiento"):
         if concepto.strip() == "" or valor == 0:
-            st.error("Debe ingresar un concepto y un valor mayor a 0.")
+            with st.modal("⚠️ Validación"):
+                st.error("Debe ingresar un concepto y un valor mayor a 0.")
         else:
             st.session_state.movimientos.append({
                 "Concepto": concepto,
                 "Movimiento": tipo_movimiento,
                 "Valor": valor
             })
-            st.success("Movimiento agregado correctamente.")
+            with st.modal("✅ Confirmación"):
+                st.success("Movimiento agregado correctamente.")
     
     # Mostrar tabla de movimientos
     if st.session_state.movimientos:
