@@ -27,7 +27,13 @@ st.markdown(
 
         /* Texto de la opción seleccionada */
         div[data-baseweb="select"] span {{
-            color: black !important;
+            color: white !important;
+        }}
+
+        /* Opciones desplegadas */
+        ul[role="listbox"] li {{
+            background-color: {color_sidebar} !important;
+            color: white !important;
         }}
 
         /* Botón de colapso << */
