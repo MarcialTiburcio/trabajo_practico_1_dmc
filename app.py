@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 
 color_sidebar = "#032457"   # azul del logo
+color_selected = "#FFD700"  # dorado para resaltar la selección
 
 st.markdown(
     f"""
@@ -19,23 +20,23 @@ st.markdown(
 
         /* Estilo específico para el título "Navegación" */
         [data-testid="stSidebar"] h2 {{
-            color: #FFD700 !important;   /* amarillo dorado */
+            color: {color_selected} !important;
             font-weight: bold;
             text-transform: uppercase;
             border-bottom: 2px solid white;
             padding-bottom: 5px;
         }}
 
-        /* Caja del selectbox (cuando está cerrado) */
+        /* Caja del selectbox (cerrado) */
         div[data-baseweb="select"] > div {{
             background-color: {color_sidebar} !important;
-            color: #FFD700 !important;   /* texto dorado para destacar */
+            color: {color_selected} !important;
             border: 1px solid white !important;
         }}
 
-        /* Texto de la opción seleccionada */
+        /* Texto de la opción seleccionada dentro del selectbox */
         div[data-baseweb="select"] span {{
-            color: #FFD700 !important;   /* dorado para diferenciar */
+            color: {color_selected} !important;
             font-weight: bold;
         }}
 
@@ -47,7 +48,7 @@ st.markdown(
 
         /* Opción resaltada al pasar el mouse */
         ul[role="listbox"] li:hover {{
-            background-color: #FFD700 !important;
+            background-color: {color_selected} !important;
             color: {color_sidebar} !important;
             font-weight: bold;
         }}
