@@ -2,8 +2,18 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-color_sidebar = "#032457"   # azul del logo
-color_selected_bg = "#FFD700"  # dorado para el fondo del selectbox
+color_sidebar_text = "#032457"   # azul del logo
+st.markdown(
+    f"""
+    <style>
+        /* Texto general del sidebar */
+        [data-testid="stSidebar"] * {{
+            color: {color_sidebar_text} !important;
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.sidebar.image("logodmc_2.png")
 st.set_page_config(page_title="Proyecto 1 - Fundamentos de Programación", layout="wide")
