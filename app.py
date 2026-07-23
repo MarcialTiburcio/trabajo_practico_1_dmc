@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Color de fondo del logo (ejemplo: azul oscuro)
-color_sidebar = "#032457"   # reemplaza con el código HEX exacto del color del logo
+color_sidebar = "#032457"
 
 st.markdown(
     f"""
@@ -18,10 +18,11 @@ st.markdown(
             color: white !important;
         }}
 
-        /* Ajuste específico para los selectbox */
+        /* Caja del selectbox */
         div[data-baseweb="select"] > div {{
-            background-color: white !important;   /* fondo blanco */
-            color: black !important;              /* texto negro */
+            background-color: {color_sidebar} !important;   /* fondo azul */
+            color: white !important;                        /* texto blanco */
+            border: 1px solid white !important;             /* borde blanco */
         }}
 
         /* Texto de la opción seleccionada */
