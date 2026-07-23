@@ -18,38 +18,28 @@ st.markdown(
             color: white !important;
         }}
 
-        /* Estilo específico para el título "Navegación" */
-        [data-testid="stSidebar"] h2 {{
-            color: {color_selected_bg} !important;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-bottom: 2px solid white;
-            padding-bottom: 5px;
-        }}
-
         /* Caja del selectbox (cerrado) */
         div[data-baseweb="select"] > div {{
-            background-color: {color_selected_bg} !important; /* fondo dorado */
+            background-color: {color_sidebar} !important;   /* fondo azul */
             border: 1px solid white !important;
-        }}
-
-        /* Texto dentro del selectbox */
-        div[data-baseweb="select"] input {{
-            color: {color_sidebar} !important; /* texto azul oscuro */
-            font-weight: bold;
         }}
 
         /* Opciones desplegadas */
         ul[role="listbox"] li {{
-            background-color: {color_sidebar} !important;
+            background-color: {color_sidebar} !important;   /* fondo azul */
             color: white !important;
         }}
 
         /* Opción resaltada al pasar el mouse */
         ul[role="listbox"] li:hover {{
-            background-color: {color_selected_bg} !important;
+            background-color: #FFD700 !important;           /* dorado */
             color: {color_sidebar} !important;
             font-weight: bold;
+        }}
+
+        /* Botón de colapso << */
+        button[kind="header"] {{
+            color: white !important;
         }}
     </style>
     """,
