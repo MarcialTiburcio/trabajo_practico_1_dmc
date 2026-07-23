@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 color_sidebar = "#032457"   # azul del logo
-color_selected = "#FFD700"  # dorado para resaltar la selección
+color_selected_bg = "#FFD700"  # dorado para el fondo del selectbox
 
 st.markdown(
     f"""
@@ -20,28 +20,22 @@ st.markdown(
 
         /* Estilo específico para el título "Navegación" */
         [data-testid="stSidebar"] h2 {{
-            color: {color_selected} !important;
+            color: {color_selected_bg} !important;
             font-weight: bold;
             text-transform: uppercase;
             border-bottom: 2px solid white;
             padding-bottom: 5px;
         }}
 
-        /* Caja del selectbox */
+        /* Caja del selectbox (cerrado) */
         div[data-baseweb="select"] > div {{
-            background-color: {color_sidebar} !important;
+            background-color: {color_selected_bg} !important; /* fondo dorado */
             border: 1px solid white !important;
         }}
 
-        /* Texto dentro del input del selectbox */
+        /* Texto dentro del selectbox */
         div[data-baseweb="select"] input {{
-            color: {color_selected} !important;
-            font-weight: bold;
-        }}
-
-        /* Placeholder del selectbox */
-        div[data-baseweb="select"] div[role="button"] span {{
-            color: {color_selected} !important;
+            color: {color_sidebar} !important; /* texto azul oscuro */
             font-weight: bold;
         }}
 
@@ -53,7 +47,7 @@ st.markdown(
 
         /* Opción resaltada al pasar el mouse */
         ul[role="listbox"] li:hover {{
-            background-color: {color_selected} !important;
+            background-color: {color_selected_bg} !important;
             color: {color_sidebar} !important;
             font-weight: bold;
         }}
@@ -69,6 +63,7 @@ menu = st.sidebar.selectbox(
     "Navegación",
     ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
 )
+
 
 # =========================
 # HOME
