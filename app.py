@@ -9,6 +9,7 @@ st.markdown(
         /* Texto general del sidebar */
         [data-testid="stSidebar"] * {{
             color: {color_sidebar_text} !important;
+            style: bold
         }}
     </style>
     """,
