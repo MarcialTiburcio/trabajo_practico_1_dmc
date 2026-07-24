@@ -28,10 +28,10 @@ menu = st.sidebar.selectbox(
 
 # Principal
 if menu == "Principal":
-    st.title("Proyecto Aplicado en Streamlit – Fundamentos de Programación")
+    st.title("Trabajo Práctico 1 - Especialización de Python for Analytics")
     st.subheader("Módulo 1 - Curso Python DMC")
-    st.image("https://www.python.org/static/community_logos/python-logo.png", width=200)
-    st.write("**Nombre del estudiante:** Marcial")
+    st.image("Python-logo.png", width=200)
+    st.write("**Nombre del estudiante:** TIBURCIO TOTOS, Reyes Marcial")
     st.write("**Año:** 2026")
     st.markdown("""
     ### Descripción
@@ -290,11 +290,11 @@ elif menu == "Ejercicio 4":
             seleccionado = st.selectbox("Seleccione empleado a eliminar", nombres)
     
             if st.button("Eliminar"):
-                #st.session_state.empleados = [e for e in st.session_state.empleados if e.nombre != seleccionado]
                 nueva_lista = []
                 for e in st.session_state.empleados:
                     if e.nombre != seleccionado:
                         nueva_lista.append(e)
+                
                 st.session_state.empleados = nueva_lista
                 st.success(f"Empleado {seleccionado} eliminado correctamente.")
         else:
