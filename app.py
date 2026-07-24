@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from libreria_funciones_proyecto1 import calcular_cuota_prestamo_frances
+from libreria_clases_proyecto1 import Empleado
 
 #Aplicando CSS - Hojas de estilo
 color_sidebar_text = "#032457"  #Color del fondo del logo
@@ -204,33 +205,91 @@ elif menu == "Ejercicio 3":
         df = pd.DataFrame(st.session_state.historico_prestamos)
         st.markdown("### Histórico de cálculos")
         st.dataframe(df)
+
+
 # =========================
 # EJERCICIO 4 – Uso de clases externas con CRUD
 # =========================
 elif menu == "Ejercicio 4":
-    st.markdown("### Ejercicio 4 – Uso de Clases con CRUD")
 
-    from libreria_clases_proyecto1 import Cliente
-
-    if "clientes" not in st.session_state:
-        st.session_state.clientes = []
-
-    nombre = st.text_input("Nombre del cliente")
-    edad = st.number_input("Edad", min_value=0, step=1)
-    correo = st.text_input("Correo electrónico")
-
-    if st.button("Crear cliente"):
-        nuevo = Cliente(nombre, edad, correo)
-        st.session_state.clientes.append(nuevo)
-        st.success("Cliente creado correctamente")
-
-    if st.session_state.clientes:
-        data = [{"Nombre": c.nombre, "Edad": c.edad, "Correo": c.correo} for c in st.session_state.clientes]
-        df = pd.DataFrame(data)
-        st.dataframe(df)
-
-        # Actualizar y eliminar (ejemplo simple)
-        seleccion = st.selectbox("Seleccionar cliente para eliminar", [c.nombre for c in st.session_state.clientes])
-        if st.button("Eliminar cliente"):
-            st.session_state.clientes = [c for c in st.session_state.clientes if c.nombre != seleccion]
-            st.warning(f"Cliente {seleccion} eliminado")
+    if "empleados" not in st.session_state:
+        st.session_state.empleados = []
+    
+    st.title("Ejercicio 4 – Uso de clases con CRUD")
+    
+    st.markdown("""
+    Este módulo conecta la clase **Empleado** con widgets en Streamlit.
+    Permite crear, visualizar, actualizar y eliminar registros de empleados.
+    """)
+    
+    # =========================
+    # Tabs para CRUD
+    # =========================
+    tab1, tab2, tab3, tab4 = st.tabs(["Crear", "Leer", "Actualizar", "Eliminar"])
+    
+    # -------------------------
+    # Crear
+    # -------------------------
+    with tab1:
+        st.subheader("Crear empleado")
+        nombre = st.text_input("Nombre")
+        salario_base = st.number_input("Salario base", min_value=0.0, step=100.0)
+        bono = st.number_input("Porcentaje de bono (%)", min_value=0.0, step=1.0)
+        descuento = st.number_input("Porcentaje de descuento (%)", min_value=0.0, step=1.0)
+    
+        if st.button("Agregar empleado"):
+            if nombre.strip() == "" or salario_base <= 0:
+                st.error("Debe ingresar un nombre y un salario base mayor a 0.")
+            else:
+                empleado = Empleado(nombre, salario_base, bono, descuento)
+                st.session_state.empleados.append(empleado)
+                st.success("Empleado agregado correctamente.")
+    
+    # -------------------------
+    # Leer
+    # -------------------------
+    with tab2:
+        st.subheader("Lista de empleados")
+        if st.session_state.empleados:
+            df = pd.DataFrame([emp.resumen() for emp in st.session_state.empleados])
+            st.dataframe(df)
+        else:
+            st.info("No hay empleados registrados.")
+    
+    # -------------------------
+    # Actualizar
+    # -------------------------
+    with tab3:
+        st.subheader("Actualizar empleado")
+        if st.session_state.empleados:
+            nombres = [emp.nombre for emp in st.session_state.empleados]
+            seleccionado = st.selectbox("Seleccione empleado", nombres)
+    
+            emp = next(e for e in st.session_state.empleados if e.nombre == seleccionado)
+    
+            nuevo_salario = st.number_input("Nuevo salario base", value=emp.salario_base, step=100.0)
+            nuevo_bono = st.number_input("Nuevo porcentaje de bono (%)", value=emp.porcentaje_bono, step=1.0)
+            nuevo_descuento = st.number_input("Nuevo porcentaje de descuento (%)", value=emp.porcentaje_descuento, step=1.0)
+    
+            if st.button("Actualizar"):
+                emp.salario_base = nuevo_salario
+                emp.porcentaje_bono = nuevo_bono
+                emp.porcentaje_descuento = nuevo_descuento
+                st.success("Empleado actualizado correctamente.")
+        else:
+            st.info("No hay empleados para actualizar.")
+    
+    # -------------------------
+    # Eliminar
+    # -------------------------
+    with tab4:
+        st.subheader("Eliminar empleado")
+        if st.session_state.empleados:
+            nombres = [emp.nombre for emp in st.session_state.empleados]
+            seleccionado = st.selectbox("Seleccione empleado a eliminar", nombres)
+    
+            if st.button("Eliminar"):
+                st.session_state.empleados = [e for e in st.session_state.empleados if e.nombre != seleccionado]
+                st.success(f"Empleado {seleccionado} eliminado correctamente.")
+        else:
+            st.info("No hay empleados para eliminar.")
