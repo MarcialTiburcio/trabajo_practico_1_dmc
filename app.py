@@ -29,8 +29,8 @@ menu = st.sidebar.selectbox(
 # Principal
 if menu == "Principal":
     st.title("Trabajo Práctico 1 - Especialización de Python for Analytics")
-    st.subheader("Módulo 1 - Curso Python DMC")
     st.image("logo-python.png")
+    st.subheader("Módulo 1 - Curso Python DMC")
     st.write("**Nombre del estudiante:** TIBURCIO TOTOS, Reyes Marcial")
     st.write("**Año:** 2026")
     st.markdown("""
