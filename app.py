@@ -249,7 +249,7 @@ elif menu == "Ejercicio 4":
                 resumenes.append(emp.resumen())
             
             df = pd.DataFrame(resumenes)
-            
+            st.dataFrames(df)
         else:
             st.info("No hay empleados registrados.")
     
