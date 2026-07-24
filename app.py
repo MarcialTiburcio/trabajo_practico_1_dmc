@@ -35,7 +35,7 @@ if menu == "Principal":
     st.write("**Año:** 2026")
     st.markdown("""
     ### Descripción
-    En el proyecto "Trabajo Práctico 1" se aplicó los conocimientos básicos de programación en Python adquiridos en este curso; esta aplicación integra los conceptos fundamentales de programación en Python:
+    En el proyecto "Trabajo Práctico 1" se aplicó los conocimientos básicos de programación en Python adquiridos en este curso; esta aplicación integra los conceptos fundamentales de:
     - Variables  
     - Estructuras de datos  
     - Control de flujo  
