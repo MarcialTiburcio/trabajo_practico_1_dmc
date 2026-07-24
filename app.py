@@ -46,9 +46,10 @@ if menu == "Principal":
     **Tecnologías utilizadas:** Python, Streamlit, NumPy, Pandas
     """)
 
-# =========================
-# EJERCICIO 1 – Flujo de caja con listas
-# =========================
+# ----------------------------------------- #
+#   EJERCICIO 1 – Flujo de caja con listas  #
+# ----------------------------------------- #
+
 elif menu == "Ejercicio 1":
 
     if "movimientos" not in st.session_state:
@@ -98,9 +99,9 @@ elif menu == "Ejercicio 1":
         else:
             st.error("Flujo de caja: EN CONTRA")
             
-# =========================
-# EJERCICIO 2 – Registro con NumPy y DataFrame
-# =========================
+# ------------------------------------------------ #
+#   EJERCICIO 2 – Registro con NumPy y DataFrame   #
+# ------------------------------------------------ #
 elif menu == "Ejercicio 2":
     
     # Inicialización de los Arrays
@@ -149,9 +150,11 @@ elif menu == "Ejercicio 2":
     
         st.markdown("### Registro Actualizado")
         st.dataframe(df)
-# =========================
-# EJERCICIO 3 – Uso de funciones externas
-# =========================
+
+
+# ----------------------------------------- #
+#  EJERCICIO 3 – Uso de funciones externas  #
+# ----------------------------------------- #
 elif menu == "Ejercicio 3":
     if "historico_prestamos" not in st.session_state:
         st.session_state.historico_prestamos = []
@@ -163,21 +166,16 @@ elif menu == "Ejercicio 3":
     Permite ingresar parámetros, ejecutar el cálculo y mantener un histórico de resultados.
     """)
     
-    # =========================
-    # Selector de función
-    # =========================
-    funcion = st.selectbox("Seleccione la función a ejecutar", ["calcular_cuota_prestamo_frances"])
+
+    # Combo para seleccionar la función
+    funcion = st.selectbox("Seleccione la función a ejecutar...", ["calcular_cuota_prestamo_frances"])
     
-    # =========================
-    # Widgets de parámetros
-    # =========================
+    # Definimos las variables que recibirán los valores
     monto = st.number_input("Monto del préstamo", min_value=0.0, step=100.0)
     tasa = st.number_input("Tasa anual (%)", min_value=0.0, step=0.1)
     plazo = st.number_input("Plazo en meses", min_value=1, step=1)
     
-    # =========================
-    # Botón para ejecutar
-    # =========================
+    # Creamos el botón para Calcular
     if st.button("Calcular"):
         if funcion == "calcular_cuota_prestamo_frances":
             resultado = calcular_cuota_prestamo_frances(monto, tasa, plazo)
@@ -198,18 +196,16 @@ elif menu == "Ejercicio 3":
                 "Interés total": resultado["interes_total"]
             })
     
-    # =========================
-    # Mostrar histórico acumulado
-    # =========================
+    # Mostramos el histórico acumulado
     if st.session_state.historico_prestamos:
         df = pd.DataFrame(st.session_state.historico_prestamos)
         st.markdown("### Histórico de cálculos")
         st.dataframe(df)
 
 
-# =========================
-# EJERCICIO 4 – Uso de clases externas con CRUD
-# =========================
+# ------------------------------------------------ #
+#   EJERCICIO 4 – Uso de clases externas con CRUD  #
+# ------------------------------------------------ #
 elif menu == "Ejercicio 4":
 
     if "empleados" not in st.session_state:
@@ -222,14 +218,11 @@ elif menu == "Ejercicio 4":
     Permite crear, visualizar, actualizar y eliminar registros de empleados.
     """)
     
-    # =========================
+
     # Tabs para CRUD
-    # =========================
     tab1, tab2, tab3, tab4 = st.tabs(["Crear", "Leer", "Actualizar", "Eliminar"])
     
-    # -------------------------
-    # Crear
-    # -------------------------
+    # Para la opción Crear
     with tab1:
         st.subheader("Crear empleado")
         nombre = st.text_input("Nombre")
@@ -245,20 +238,22 @@ elif menu == "Ejercicio 4":
                 st.session_state.empleados.append(empleado)
                 st.success("Empleado agregado correctamente.")
     
-    # -------------------------
-    # Leer
-    # -------------------------
+    # Para la opción Leer
     with tab2:
         st.subheader("Lista de empleados")
         if st.session_state.empleados:
-            df = pd.DataFrame([emp.resumen() for emp in st.session_state.empleados])
-            st.dataframe(df)
+            #df = pd.DataFrame([emp.resumen() for emp in st.session_state.empleados])
+            #st.dataframe(df)
+            resumenes = []
+            for emp in st.session_state.empleados:
+                resumenes.append(emp.resumen())
+            
+            df = pd.DataFrame(resumenes)
+            
         else:
             st.info("No hay empleados registrados.")
     
-    # -------------------------
-    # Actualizar
-    # -------------------------
+    # Para la opción Actualizar
     with tab3:
         st.subheader("Actualizar empleado")
         if st.session_state.empleados:
@@ -279,9 +274,7 @@ elif menu == "Ejercicio 4":
         else:
             st.info("No hay empleados para actualizar.")
     
-    # -------------------------
-    # Eliminar
-    # -------------------------
+    # Para la opción Eliminar
     with tab4:
         st.subheader("Eliminar empleado")
         if st.session_state.empleados:
