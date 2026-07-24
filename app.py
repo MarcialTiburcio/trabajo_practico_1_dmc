@@ -283,7 +283,6 @@ elif menu == "Ejercicio 4":
     with tab4:
         st.subheader("Eliminar empleado")
         if st.session_state.empleados:
-            #nombres = [emp.nombre for emp in st.session_state.empleados]
             nombres = []
             for emp in st.session_state.empleados:
                 nombres.append(emp.nombre)
@@ -291,7 +290,12 @@ elif menu == "Ejercicio 4":
             seleccionado = st.selectbox("Seleccione empleado a eliminar", nombres)
     
             if st.button("Eliminar"):
-                st.session_state.empleados = [e for e in st.session_state.empleados if e.nombre != seleccionado]
+                #st.session_state.empleados = [e for e in st.session_state.empleados if e.nombre != seleccionado]
+                nueva_lista = []
+                for e in st.session_state.empleados:
+                    if e.nombre != seleccionado:
+                        nueva_lista.append(e)
+                st.session_state.empleados = nueva_lista
                 st.success(f"Empleado {seleccionado} eliminado correctamente.")
         else:
             st.info("No hay empleados para eliminar.")
