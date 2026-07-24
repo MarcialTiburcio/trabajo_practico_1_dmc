@@ -255,14 +255,18 @@ elif menu == "Ejercicio 4":
     with tab3:
         st.subheader("Actualizar empleado")
         if st.session_state.empleados:
-            #nombres = [emp.nombre for emp in st.session_state.empleados]
             nombres = []
             for emp in st.session_state.empleados:
                 nombres.append(emp.nombre)
                 
             seleccionado = st.selectbox("Seleccione empleado", nombres)
     
-            emp = next(e for e in st.session_state.empleados if e.nombre == seleccionado)
+            #emp = next(e for e in st.session_state.empleados if e.nombre == seleccionado)
+            empleado_seleccionado = None
+            for e in st.session_state.empleados:
+                if e.nombre == seleccionado:
+                    empleado_seleccionado = e
+                    break
     
             nuevo_salario = st.number_input("Nuevo salario base", value=emp.salario_base, step=100.0)
             nuevo_bono = st.number_input("Nuevo porcentaje de bono (%)", value=emp.porcentaje_bono, step=1.0)
