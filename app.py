@@ -8,7 +8,7 @@ from libreria_clases_proyecto1 import Empleado
 # Configuración de estilos
 # =========================
 color_sidebar_bg = "#032457"   # azul corporativo
-color_sidebar_text = "#FFFFFF" # texto blanco
+color_sidebar_text = "#032457"  #Color del fondo del logo
 color_button = "#1E90FF"       # azul dinámico
 color_success = "#28a745"      # verde éxito
 color_error = "#dc3545"        # rojo error
