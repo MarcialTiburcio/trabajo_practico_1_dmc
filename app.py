@@ -257,7 +257,7 @@ elif menu == "Ejercicio 4":
         if st.session_state.empleados:
             #nombres = [emp.nombre for emp in st.session_state.empleados]
             nombres = []
-            for emp in st.session_state.empleados
+            for emp in st.session_state.empleados:
                 nombres.append(emp.nombre)
                 
             seleccionado = st.selectbox("Seleccione empleado", nombres)
