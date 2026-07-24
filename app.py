@@ -242,13 +242,11 @@ elif menu == "Ejercicio 4":
     with tab2:
         st.subheader("Lista de empleados")
         if st.session_state.empleados:
-            #df = pd.DataFrame([emp.resumen() for emp in st.session_state.empleados])
-            #st.dataframe(df)
-            resumenes = []
+            Lista_Empleados = []
             for emp in st.session_state.empleados:
-                resumenes.append(emp.resumen())
+                Lista_Empleados.append(emp.resumen())
             
-            df = pd.DataFrame(resumenes)
+            df = pd.DataFrame(Lista_Empleados)
             st.dataframe(df)
         else:
             st.info("No hay empleados registrados.")
