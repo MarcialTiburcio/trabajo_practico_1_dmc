@@ -19,9 +19,6 @@ st.markdown(
     f"""
     <style>
         /* Sidebar */
-        [data-testid="stSidebar"] {{
-            background-color: {color_sidebar_bg};
-        }}
         [data-testid="stSidebar"] * {{
             color: {color_sidebar_text} !important;
         }}
