@@ -36,12 +36,12 @@ if menu == "Principal":
     st.markdown("""
     ### Descripción
     En el proyecto "Trabajo Práctico 1" se aplicó los conocimientos básicos de programación en Python adquiridos en este curso; esta aplicación integra los conceptos fundamentales de:
-    - Variables  
+    - Variables
+    - Listas, Diccionarios
     - Estructuras de datos  
     - Control de flujo  
     - Funciones  
-    - Programación funcional  
-    - Programación orientada a objetos (POO)  
+    - Programación funcional y Programación orientada a objetos (POO)  
 
     **Tecnologías utilizadas:** Python, Streamlit, NumPy, Pandas
     """)
