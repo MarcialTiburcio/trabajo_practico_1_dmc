@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-#from librería_funciones_proyecto1 import calcular_cuota_prestamo_frances
+from libreria_funciones_proyecto1 import calcular_cuota_prestamo_frances
 
 #Aplicando CSS - Hojas de estilo
 color_sidebar_text = "#032457"  #Color del fondo del logo
