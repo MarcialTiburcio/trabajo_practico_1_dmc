@@ -151,27 +151,58 @@ elif menu == "Ejercicio 2":
 # EJERCICIO 3 – Uso de funciones externas
 # =========================
 elif menu == "Ejercicio 3":
-    st.markdown("### Ejercicio 3 – Uso de Funciones desde Librería Externa")
-
-    # Ejemplo: Supongamos que la librería tiene una función para calcular interés simple
-    from libreria_funciones_proyecto1 import calcular_interes_simple
-
-    capital = st.number_input("Capital", min_value=0.0)
-    tasa = st.number_input("Tasa de interés (%)", min_value=0.0)
-    tiempo = st.number_input("Tiempo (años)", min_value=0.0)
-
-    if "historico_funciones" not in st.session_state:
-        st.session_state.historico_funciones = []
-
-    if st.button("Calcular interés"):
-        resultado = calcular_interes_simple(capital, tasa, tiempo)
-        st.write(f"El interés calculado es: {resultado}")
-        st.session_state.historico_funciones.append([capital, tasa, tiempo, resultado])
-
-    if st.session_state.historico_funciones:
-        df = pd.DataFrame(st.session_state.historico_funciones, columns=["Capital", "Tasa", "Tiempo", "Resultado"])
+    if "historico_prestamos" not in st.session_state:
+        st.session_state.historico_prestamos = []
+    
+    st.title("Ejercicio 3 – Uso de funciones desde librería externa")
+    
+    st.markdown("""
+    Este módulo conecta la función **calcular_cuota_prestamo_frances** con widgets en Streamlit.
+    Permite ingresar parámetros, ejecutar el cálculo y mantener un histórico de resultados.
+    """)
+    
+    # =========================
+    # Selector de función
+    # =========================
+    funcion = st.selectbox("Seleccione la función a ejecutar", ["calcular_cuota_prestamo_frances"])
+    
+    # =========================
+    # Widgets de parámetros
+    # =========================
+    monto = st.number_input("Monto del préstamo", min_value=0.0, step=100.0)
+    tasa = st.number_input("Tasa anual (%)", min_value=0.0, step=0.1)
+    plazo = st.number_input("Plazo en meses", min_value=1, step=1)
+    
+    # =========================
+    # Botón para ejecutar
+    # =========================
+    if st.button("Calcular"):
+        if funcion == "calcular_cuota_prestamo_frances":
+            resultado = calcular_cuota_prestamo_frances(monto, tasa, plazo)
+    
+            # Mostrar resultado en pantalla
+            st.markdown("### Resultado del cálculo")
+            st.write(f"**Cuota mensual:** {resultado['cuota_mensual']}")
+            st.write(f"**Total pagado:** {resultado['total_pagado']}")
+            st.write(f"**Interés total:** {resultado['interes_total']}")
+    
+            # Guardar en histórico
+            st.session_state.historico_prestamos.append({
+                "Monto": monto,
+                "Tasa (%)": tasa,
+                "Plazo (meses)": plazo,
+                "Cuota mensual": resultado["cuota_mensual"],
+                "Total pagado": resultado["total_pagado"],
+                "Interés total": resultado["interes_total"]
+            })
+    
+    # =========================
+    # Mostrar histórico acumulado
+    # =========================
+    if st.session_state.historico_prestamos:
+        df = pd.DataFrame(st.session_state.historico_prestamos)
+        st.markdown("### Histórico de cálculos")
         st.dataframe(df)
-
 # =========================
 # EJERCICIO 4 – Uso de clases externas con CRUD
 # =========================
